@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jxb:bindings
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	jxb:version="2.1">
+<jxb:bindings schemaLocation="toolbox_evince.xsd" node="/xs:schema">
+
+    <jxb:schemaBindings>
+	<jxb:package name="com.lundellnet.toolbox.evince" />
+    </jxb:schemaBindings>
+
+</jxb:bindings>
+</jxb:bindings>

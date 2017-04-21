@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0"
+	targetNamespace="https://lundellnet.com/toolbox/evince"
+	xmlns="https://lundellnet.com/toolbox/api/evince"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:annox="http://annox.dev.java.net"
+	elementFormDefault="qualified">
+
+    <xs:simpleType name="MutationType">
+	<xs:annotation><xs:documentation>
+
+	</xs:documentation></xs:annotation>
+	<xs:restriction base="xs:string">
+	    <xs:enumeration value="get">
+		<xs:annotation><xs:documentation>
+
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	    <xs:enumeration value="set">
+		<xs:annotation><xs:documentation>
+
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	</xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
