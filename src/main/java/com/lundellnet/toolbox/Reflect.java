@@ -499,6 +499,8 @@ public class Reflect {
         }
     }
     
+    
+    
     private static Logger log() {
         Logger log = null; /*getCurrentTestLog*/
         
