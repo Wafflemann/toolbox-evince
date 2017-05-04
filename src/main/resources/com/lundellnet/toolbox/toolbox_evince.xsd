@@ -6,6 +6,34 @@
 	xmlns:annox="http://annox.dev.java.net"
 	elementFormDefault="qualified">
 
+    <xs:simpleType name="MatrixParsingStep">
+	<xs:annotation><xs:documentation>
+
+	</xs:documentation></xs:annotation>
+	<xs:restriction base="xs:string">
+	    <xs:enumeration value="Iterate">
+		<xs:annotation><xs:documentation>
+
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	    <xs:enumeration value="IterateAndMap">
+		<xs:annotation><xs:documentation>
+
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	    <xs:enumeration value="Map">
+		<xs:annotation><xs:documentation>
+
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	    <xs:enumeration value="Transverse">
+		<xs:annotation><xs:documentation>
+
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	</xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="MutationType">
 	<xs:annotation><xs:documentation>
 
