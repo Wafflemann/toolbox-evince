@@ -5,7 +5,7 @@
     <groupId>com.lundellnet</groupId>
     <artifactId>toolbox-evince</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.2_1-beta</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>toolbox-evince</name>
 
     <properties>
@@ -14,7 +14,7 @@
 	<jaxb.version>2.1</jaxb.version>
 	<jaxb2-plugin.version>0.13.2</jaxb2-plugin.version>
 	<cxf-javadoc.version>3.0.4</cxf-javadoc.version>
-	<toolbox_api.version>0.0.2_1-beta</toolbox_api.version>
+	<toolbox_api.version>0.0.2-SNAPSHOT</toolbox_api.version>
 	<toolbox.dir.namespace>${basedir}/src/main/resources/com/lundellnet/toolbox</toolbox.dir.namespace>
 	<toolbox_evince.dir.generate>${project.build.directory}/generated-sources/xjc1</toolbox_evince.dir.generate>
 	<toolbox_evince.dir.api_doc>${project.build.directory}/site/toolbox_evince-apidocs</toolbox_evince.dir.api_doc>
