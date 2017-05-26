@@ -1,17 +1,39 @@
-package com.lundellnet.toolbox.evince;
+/*
+ Copyright 2017 Appropriate Technologies LLC.
+
+ This file is part of toolbox-evince, a component of the Lundellnet Java Toolbox.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+package com.lundellnet.toolbox.evince.precedents;
+
+import static com.lundellnet.toolbox.commons.PredicateUtils.isNotNull;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import com.lundellnet.toolbox.Reflect;
 import com.lundellnet.toolbox.api.data_access.AnnotatedElementType;
+import com.lundellnet.toolbox.evince.MatrixParsingStep;
+import com.lundellnet.toolbox.evince.precedents.configs.AnnotationPrecedentConfig;
 
 @SuppressWarnings("unchecked")
-public class AnnotationPrecedent {
+abstract class AbstractAnnotationPrecedent <T, R>
+		implements AnnotationPrecedentConfig<T, R>
+{
     //Concerned types denoted by the enum constants first, then at class creation the class types are loaded into an array aswell.
     private static final AnnotatedElementType[] ANNOTATION_TYPES_CONCERNED = new AnnotatedElementType[] {
             AnnotatedElementType.MATRIX_COMPONENT, AnnotatedElementType.MATRIX_COMPONENT_ADAPTER,
@@ -32,7 +54,7 @@ public class AnnotationPrecedent {
         }
     }
     
-    private static final Predicate<AnnotationPrecedent> NULL_PRECEDENCE_CHECK = (p) -> (p != null);
+    //private static final Predicate<AbstractAnnotationPrecedent> NULL_PRECEDENCE_CHECK = (p) -> (p != null);
     //assigning a work process type for the type of annotated element,
     private static final Function<AnnotatedElementType, MatrixParsingStep> PRECEDENT_SWITCH = (t) -> {
         switch (t) {
@@ -56,47 +78,54 @@ public class AnnotationPrecedent {
                 return null;
         }
     };
-    
-    public static final Function<Field, AnnotationPrecedent> FIELD_TO_PRECEDENT_MAPPER = (f) -> {
-    		for (int i = 0; i < f.getDeclaredAnnotations().length; i++) {
-    			for (int j = 0; j < COMPONENT_POINT_ANNOTATIONS.length; j++) {
-    			  if (COMPONENT_POINT_ANNOTATIONS[j].equals(f.getDeclaredAnnotations()[i].annotationType()))
-    			    return new AnnotationPrecedent(f.getDeclaredAnnotations()[i], f);
-    			}
-    		}
-    		
-    		return null;
-    	};
-    
-    public static Stream<AnnotationPrecedent> streamPrecedents(Class<?> sourceType) {
+        
+    public static <T, R, C extends AnnotationPrecedentConfig<T, R>> Stream<C> streamPrecedents(Class<?> sourceType) {
     	return Arrays.stream(Reflect.getDeclaredFields(sourceType))
-        	    .map(FIELD_TO_PRECEDENT_MAPPER)
-        	    .filter(NULL_PRECEDENCE_CHECK);
+        	    .map((f) -> {
+            		for (int i = 0; i < f.getDeclaredAnnotations().length; i++) {
+            			for (int j = 0; j < COMPONENT_POINT_ANNOTATIONS.length; j++) {
+            			  if (COMPONENT_POINT_ANNOTATIONS[j].equals(f.getDeclaredAnnotations()[i].annotationType()))
+            			    return (C) new AbstractAnnotationPrecedent<T, R>(f.getDeclaredAnnotations()[i], f) {
+        							@Override
+        							public Function<T, R> applicant() {
+        								// TODO Auto-generated method stub
+        								return null;
+        							}
+            			  		};
+            			}
+            		}
+            		
+            		return null;
+        	    })
+        	    .filter((p) -> isNotNull(p));
     }
     	
 	private final Annotation annotation;
 	private final Field annotatedField;
 	
     private final AnnotatedElementType annotatedElementType;
-	private final MatrixParsingStep step;
+	private final MatrixParsingStep decision;
 	
-	AnnotationPrecedent(Annotation annotation, Field annotatedField) {
+	AbstractAnnotationPrecedent(Annotation annotation, Field annotatedField) {
 		this.annotation = annotation;
 		this.annotatedField = annotatedField;
 
 		this.annotatedElementType = AnnotatedElementType.fromValue(annotation.annotationType().getCanonicalName());
-		this.step = PRECEDENT_SWITCH.apply(annotatedElementType);
+		this.decision = PRECEDENT_SWITCH.apply(annotatedElementType);
 	}
 	
-	public Class<? extends Annotation> getAnnotationType() {
+	@Override
+	public Class<? extends Annotation> annotationType() {
 		return annotation.annotationType();
 	}
 	
-	public Field getField() {
+	@Override
+	public Field field() {
 	  return annotatedField;
 	}
 	
-	public MatrixParsingStep getStep() {
-		return step;
+	@Override
+	public MatrixParsingStep decision() {
+		return decision;
 	}
 }

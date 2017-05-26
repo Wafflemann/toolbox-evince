@@ -23,6 +23,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.apache.log4j.Logger;
@@ -231,6 +232,27 @@ public class Reflect {
     	}
     	
     	return fields;
+    }
+    
+    public static Field[] getAllDeclaredFields(Class<?> fieldClass, Class<?> endClass) {
+    	Field[] fields = getDeclaredFields(fieldClass);
+    	
+    	if (!fieldClass.getSuperclass().equals(endClass)) {
+    		Field[] superClassFields = getAllDeclaredFields(fieldClass, endClass);
+    		Field[] cumulativeFields = new Field[fields.length + superClassFields.length];
+    		
+    		System.arraycopy(fields, 0, cumulativeFields, 0, fields.length);
+    		System.arraycopy(superClassFields, 0, cumulativeFields, fields.length, superClassFields.length);
+    		
+    		return cumulativeFields;
+    	} else {
+    		return fields;
+    	}
+    }
+    
+    public static Field getMappedField(Map<String, String> mappingProperties, String mappedPath, String delimiter, Class<?> fieldClass) {
+    	//TODO
+    	return null;
     }
     
     /**
