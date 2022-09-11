@@ -21,42 +21,42 @@
     </properties>
 
     <repositories>
-	<repository>
-	    <id>git2.release</id>
-	    <name>git2 release repository</name>
-	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/releases</url>
-	</repository>
-	<repository>
-	    <id>git2.snapshot</id>
-	    <name>git2 snapshot repository</name>
-	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/snapshots</url>
-	</repository>
+        <repository>
+            <id>git1.release</id>
+            <name>git1 release repository</name>
+            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>git1.snapshot</id>
+            <name>git1 snapshot repository</name>
+            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/snapshots</url>
+        </repository>
     </repositories>
 
     <pluginRepositories>
-	<pluginRepository>
-	    <id>git2.release</id>
-	    <name>git2 release repository</name>
-	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/releases</url>
-	</pluginRepository>
-	<pluginRepository>
-	    <id>git2.snapshot</id>
-	    <name>git2 snapshot repository</name>
-	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/snapshots</url>
-	</pluginRepository>
+        <pluginRepository>
+            <id>git1.release</id>
+            <name>git1 release repository</name>
+            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>git1.snapshot</id>
+            <name>git1 snapshot repository</name>
+            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/snapshots</url>
+        </pluginRepository>
     </pluginRepositories>
 
     <distributionManagement>
-	<repository>
-	    <id>lundellnet-git2</id>
-	    <name>git2 release repository</name>
-    	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/releases</url>
-	</repository>
-	<snapshotRepository>
-	    <id>lundellnet-git2</id>
-	    <name>git2 snapshot repository</name>
-	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/snapshots</url>
-	</snapshotRepository>
+        <repository>
+            <id>lundellnet-git1</id>
+            <name>git1 release repository</name>
+            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>lundellnet-git1</id>
+            <name>git1 snapshot repository</name>
+            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
 
 	<build>
