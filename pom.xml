@@ -24,12 +24,12 @@
         <repository>
             <id>git1.release</id>
             <name>git1 release repository</name>
-            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/releases</url>
+            <url>https://git1.lundellnet.com:8443/nexus/content/repositories/releases</url>
         </repository>
         <repository>
             <id>git1.snapshot</id>
             <name>git1 snapshot repository</name>
-            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/snapshots</url>
+            <url>https://git1.lundellnet.com:8443/nexus/content/repositories/snapshots</url>
         </repository>
     </repositories>
 
@@ -37,12 +37,12 @@
         <pluginRepository>
             <id>git1.release</id>
             <name>git1 release repository</name>
-            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/releases</url>
+            <url>https://git1.lundellnet.com:8443/nexus/content/repositories/releases</url>
         </pluginRepository>
         <pluginRepository>
             <id>git1.snapshot</id>
             <name>git1 snapshot repository</name>
-            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/snapshots</url>
+            <url>https://git1.lundellnet.com:8443/nexus/content/repositories/snapshots</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -50,12 +50,12 @@
         <repository>
             <id>lundellnet-git1</id>
             <name>git1 release repository</name>
-            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/releases</url>
+            <url>https://git1.lundellnet.com:8443/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>lundellnet-git1</id>
             <name>git1 snapshot repository</name>
-            <url>https://git1.lundellnet.com:8433/nexus/content/repositories/snapshots</url>
+            <url>https://git1.lundellnet.com:8443/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
